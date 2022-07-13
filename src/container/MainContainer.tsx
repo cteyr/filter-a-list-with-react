@@ -1,5 +1,7 @@
 import { Axios } from "../axios/axios";
 import { useEffect } from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,11 +13,25 @@ import Paper from "@mui/material/Paper";
 const MainContainer = () => {
   const { getCharacters } = Axios();
   const characters = getCharacters();
-  // console.log("hola mundo " + pe[0]);
 
   return (
     <div className="mainContainer">
-      <div className="container">
+      <h1> Data Table Rick and Morty</h1>
+      <Box
+        component="form"
+        sx={{
+          "& > :not(style)": {
+            m: 1,
+            width: "100%",
+            alignItems: "right",
+          },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField id="outlined-basic" label="Search" variant="outlined" />
+      </Box>
+      <div className="container-table">
         <TableContainer>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -27,7 +43,7 @@ const MainContainer = () => {
                 <TableCell align="center">Image</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody className="Table-Body">
               {characters.map((aliens, index) => (
                 <TableRow
                   key={aliens.id}
@@ -39,7 +55,9 @@ const MainContainer = () => {
                   <TableCell align="center">{aliens.name}</TableCell>
                   <TableCell align="center">{aliens.status}</TableCell>
                   <TableCell align="center">{aliens.species}</TableCell>
-                  <TableCell align="center">{aliens.image}</TableCell>
+                  <TableCell align="center">
+                    <img src={aliens.image} alt="" />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
