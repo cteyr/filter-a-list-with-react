@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Character } from "../types/Character";
 
 const Axios = () => {
-  const [Data, setData] = useState<Character[]>([])
+  const [getData, setgetData] = useState<Character[]>([])
   const options = {
     method: 'GET',
     url: 'https://rickandmortyapi.com/api/character/',
@@ -18,11 +18,11 @@ const Axios = () => {
   const getCharacters = () => {
     axios.request(options).then(function (response) {
       const data = response.data.results;
-      setData(data);
+      setgetData(data);
     }).catch(function (error) {
       return error;
     });
-    return Data
+    return getData
   }
 
   return { getCharacters };
