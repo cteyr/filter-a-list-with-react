@@ -50,7 +50,7 @@ const MainContainer = () => {
 
   const filterCharacters = (): Character[] => {
     const filtered = characters.filter((element) =>
-      element.name.includes(InputValue)
+      element.name.toUpperCase().includes(InputValue.toUpperCase())
     );
     return filtered.slice(currentPage, currentPage + 5);
   };
