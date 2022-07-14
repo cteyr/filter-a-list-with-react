@@ -99,6 +99,7 @@ const MainContainer = () => {
         />
 
         <Box
+          className="container-button"
           sx={{
             display: "flex",
             gap: "1rem",

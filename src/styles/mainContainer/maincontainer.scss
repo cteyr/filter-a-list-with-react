@@ -13,6 +13,12 @@
     color: #1e88e5;
   }
 
+  .container-button {
+    @media screen and (max-width: 500px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
   .container-table {
     display: flex;
     align-items: center;
