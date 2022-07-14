@@ -89,6 +89,7 @@ const MainContainer = () => {
         <CssTextField
           label="Search name"
           id="custom-css-outlined-input"
+          className="Input"
           value={InputValue}
           onChange={onChangeInput}
           InputLabelProps={{

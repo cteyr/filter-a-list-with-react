@@ -5,12 +5,19 @@
   width: 100vw;
   height: 100vh;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 
   h1 {
-    margin-top: 1rem;
+    margin-top: 3rem;
     text-align: center;
     color: #1e88e5;
+    padding: 0rem 2rem;
+  }
+
+  .Input {
+    @media screen and (max-width: 500px) {
+      width: 45vw;
+    }
   }
 
   .container-button {
