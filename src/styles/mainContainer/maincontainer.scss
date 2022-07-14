@@ -13,15 +13,15 @@
   }
 
   .container-table {
-    //background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 70vh;
     width: 80vw;
 
-    //  background-color: red;
-
     //background-color: red;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    // overflow-y: scroll;
+    // overflow-x: hidden;
 
     //  &::-webkit-scrollbar {
     // display: none;

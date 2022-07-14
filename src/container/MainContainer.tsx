@@ -1,5 +1,5 @@
 import { Axios } from "../axios/axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Table from "@mui/material/Table";
@@ -8,16 +8,24 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Character } from "../types/Character";
+import { Loading } from "../components/Loading";
+import { DotSpinner } from "@uiball/loaders";
 
 const MainContainer = () => {
   const { getCharacters } = Axios();
   const characters = getCharacters();
   const [InputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, [characters]);
 
   const filterCharacters = (): Character[] => {
     const filtered = characters.filter((element) =>
@@ -91,45 +99,66 @@ const MainContainer = () => {
       </Box>
 
       <div className="container-table">
-        <TableContainer>
-          <Table sx={{ minWidth: 0 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center" style={{ width: "100px" }}>
-                  ID
-                </TableCell>
-                <TableCell align="center" style={{ width: "250px" }}>
-                  Name
-                </TableCell>
-                <TableCell align="center" style={{ width: "250px" }}>
-                  Status
-                </TableCell>
-                <TableCell align="center" style={{ width: "250px" }}>
-                  Specie
-                </TableCell>
-                <TableCell align="center">Image</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody className="Table-Body">
-              {filterCharacters().map((aliens, index) => (
-                <TableRow
-                  key={aliens.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row" align="center">
-                    {aliens.id}
+        {isLoading ? (
+          <TableContainer sx={{ height: "70vh" }}>
+            <Table sx={{ minWidth: 0 }} aria-label="simple table">
+              <TableHead sx={{ width: "100%" }}>
+                <TableRow>
+                  <TableCell
+                    align="center"
+                    style={{ width: "100px", backgroundColor: "#2196f3" }}
+                  >
+                    ID
                   </TableCell>
-                  <TableCell align="center">{aliens.name}</TableCell>
-                  <TableCell align="center">{aliens.status}</TableCell>
-                  <TableCell align="center">{aliens.species}</TableCell>
-                  <TableCell align="center">
-                    <img src={aliens.image} alt="" style={{ height: 75 }} />
+                  <TableCell
+                    align="center"
+                    style={{ width: "250px", backgroundColor: "#2196f3" }}
+                  >
+                    Name
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ width: "250px", backgroundColor: "#2196f3" }}
+                  >
+                    Status
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ width: "250px", backgroundColor: "#2196f3" }}
+                  >
+                    Specie
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ width: "250px", backgroundColor: "#2196f3" }}
+                  >
+                    Image
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody className="Table-Body">
+                {filterCharacters().map((aliens, index) => (
+                  <TableRow
+                    key={aliens.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" align="center">
+                      {aliens.id}
+                    </TableCell>
+                    <TableCell align="center">{aliens.name}</TableCell>
+                    <TableCell align="center">{aliens.status}</TableCell>
+                    <TableCell align="center">{aliens.species}</TableCell>
+                    <TableCell align="center">
+                      <img src={aliens.image} alt="" style={{ height: 75 }} />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <DotSpinner size={80} speed={0.9} color="#1e88e5" />
+        )}
       </div>
     </div>
   );
