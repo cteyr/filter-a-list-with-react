@@ -8,6 +8,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -15,6 +16,26 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Character } from "../types/Character";
 import { Loading } from "../components/Loading";
 import { DotSpinner } from "@uiball/loaders";
+
+const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "#42a5f5",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#42a5f5",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#42a5f5",
+    },
+    "&:hover fieldset": {
+      borderColor: "#42a5f5",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#42a5f5",
+    },
+  },
+});
 
 const MainContainer = () => {
   const { getCharacters } = Axios();
@@ -57,7 +78,6 @@ const MainContainer = () => {
     <div className="mainContainer">
       <h1> Data Table Rick and Morty</h1>
       <Box
-        component="form"
         sx={{
           width: "80vw",
           display: "flex",
@@ -65,16 +85,19 @@ const MainContainer = () => {
           justifyContent: "space-between",
           flexDirection: "row",
         }}
-        noValidate
-        autoComplete="off"
       >
-        <TextField
-          id="outlined-basic"
-          label="Search"
-          variant="outlined"
+        <CssTextField
+          label="Search name"
+          id="custom-css-outlined-input"
           value={InputValue}
           onChange={onChangeInput}
+          InputLabelProps={{
+            style: {
+              color: "#90caf9",
+            },
+          }}
         />
+
         <Box
           sx={{
             display: "flex",
