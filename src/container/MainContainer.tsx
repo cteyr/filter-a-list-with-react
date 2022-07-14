@@ -1,5 +1,5 @@
 import { Axios } from "../axios/axios";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Table from "@mui/material/Table";
@@ -11,7 +11,6 @@ import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Paper from "@mui/material/Paper";
 import { Character } from "../types/Character";
 
 const MainContainer = () => {
@@ -19,14 +18,19 @@ const MainContainer = () => {
   const characters = getCharacters();
   const [InputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const [SelectCharacters, setSelectCharacters] = useState<Character[]>([]);
 
   const filterCharacters = (): Character[] => {
-    return characters.slice(currentPage, currentPage + 5);
+    const filtered = characters.filter((element) =>
+      element.name.includes(InputValue)
+    );
+    return filtered.slice(currentPage, currentPage + 5);
   };
 
   const nextPage = () => {
-    if (currentPage <= 10) {
+    if (
+      characters.filter((element) => element.name.includes(InputValue)).length >
+      currentPage + 5
+    ) {
       setCurrentPage(currentPage + 5);
     }
   };
@@ -36,9 +40,10 @@ const MainContainer = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(InputValue);
-  }, [InputValue]);
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentPage(0);
+    setInputValue(event.target.value);
+  };
 
   return (
     <div className="mainContainer">
@@ -60,7 +65,7 @@ const MainContainer = () => {
           label="Search"
           variant="outlined"
           value={InputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={onChangeInput}
         />
         <Box
           sx={{
