@@ -8,20 +8,26 @@
   gap: 1.5rem;
 
   h1 {
-    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    width: 100%;
     color: #1e88e5;
-    padding: 0rem 2rem;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 3rem;
+    }
   }
 
   .Input {
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 768px) {
       width: 45vw;
     }
   }
 
   .container-button {
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 768px) {
       display: flex;
       flex-direction: column-reverse;
     }
