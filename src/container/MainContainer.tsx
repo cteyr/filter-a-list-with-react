@@ -125,7 +125,7 @@ const MainContainer = () => {
 
       <div className="container-table">
         {isLoading ? (
-          <TableContainer sx={{ height: "70vh" }}>
+          <TableContainer sx={{ height: "65vh" }}>
             <Table sx={{ minWidth: 0 }} aria-label="simple table">
               <TableHead sx={{ width: "100%" }}>
                 <TableRow>
