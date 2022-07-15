@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 
   h1 {
     display: flex;
@@ -14,7 +14,10 @@
     text-align: center;
     width: 100%;
     color: #1e88e5;
-    margin-top: 1.5rem;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 1rem;
+    }
   }
 
   .Input {
@@ -30,18 +33,10 @@
     }
   }
   .container-table {
-    display: flex;
+    // display: flex;
     align-items: center;
     justify-content: center;
-    height: 65vh;
+    height: 70vh;
     width: 80vw;
-
-    //background-color: red;
-    // overflow-y: scroll;
-    // overflow-x: hidden;
-
-    //  &::-webkit-scrollbar {
-    // display: none;
-    //  }
   }
 }
