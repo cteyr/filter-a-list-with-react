@@ -2,33 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Axios } from "../axios/axios";
 import Box from "@mui/material/Box";
 import { Tabla } from "../components/Table";
-import TextField from "@mui/material/TextField";
-import { styled } from "@mui/material/styles";
+import { Input } from "../components/Input";
 import { Boton } from "../components/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Character } from "../types/Character";
 import { DotSpinner } from "@uiball/loaders";
-
-const CssTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "#42a5f5",
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: "#42a5f5",
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "#42a5f5",
-    },
-    "&:hover fieldset": {
-      borderColor: "#42a5f5",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#42a5f5",
-    },
-  },
-});
 
 const MainContainer = () => {
   const [InputValue, setInputValue] = useState("");
@@ -78,19 +57,7 @@ const MainContainer = () => {
           flexDirection: "row",
         }}
       >
-        <CssTextField
-          label="Search name"
-          id="custom-css-outlined-input"
-          className="Input"
-          value={InputValue}
-          onChange={onChangeInput}
-          InputLabelProps={{
-            style: {
-              color: "#90caf9",
-            },
-          }}
-        />
-
+        <Input value={InputValue} onchange={onChangeInput} />
         <Box
           className="container-button"
           sx={{
