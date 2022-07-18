@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import { Tabla } from "../components/Table";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
+import { Boton } from "../components/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Character } from "../types/Character";
@@ -98,20 +98,8 @@ const MainContainer = () => {
             gap: "1rem",
           }}
         >
-          <Button
-            variant="outlined"
-            startIcon={<ArrowBackIcon />}
-            onClick={prevPage}
-          >
-            Prev
-          </Button>
-          <Button
-            variant="outlined"
-            startIcon={<ArrowForwardIcon />}
-            onClick={nextPage}
-          >
-            Next
-          </Button>
+          <Boton text="Prev" onclick={prevPage} icon={<ArrowBackIcon />} />
+          <Boton text="Next" onclick={nextPage} icon={<ArrowForwardIcon />} />
         </Box>
       </Box>
 
