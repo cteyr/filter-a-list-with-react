@@ -1,5 +1,5 @@
-import { Axios } from "../axios/axios";
 import React, { useState, useEffect } from "react";
+import { Axios } from "../axios/axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Table from "@mui/material/Table";
@@ -9,12 +9,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Character } from "../types/Character";
-import { Loading } from "../components/Loading";
 import { DotSpinner } from "@uiball/loaders";
 
 const CssTextField = styled(TextField)({
@@ -38,18 +36,17 @@ const CssTextField = styled(TextField)({
 });
 
 const MainContainer = () => {
-  const { getCharacters } = Axios();
-  const characters = getCharacters();
   const [InputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const { getCharacters, setCharacters, Characters } = Axios();
 
   useEffect(() => {
     setIsLoading(true);
-  }, [characters]);
+  }, [Characters]);
 
   const filterCharacters = (): Character[] => {
-    const filtered = characters.filter((element) =>
+    const filtered = getCharacters().filter((element) =>
       element.name.toUpperCase().includes(InputValue.toUpperCase())
     );
     return filtered.slice(currentPage, currentPage + 5);
@@ -57,7 +54,7 @@ const MainContainer = () => {
 
   const nextPage = () => {
     if (
-      characters.filter((element) => element.name.includes(InputValue)).length >
+      Characters.filter((element) => element.name.includes(InputValue)).length >
       currentPage + 5
     ) {
       setCurrentPage(currentPage + 5);
