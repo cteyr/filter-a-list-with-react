@@ -16,11 +16,15 @@ const MainContainer = () => {
   const { getCharacters, setCharacters, Characters } = Axios();
 
   useEffect(() => {
+    getCharacters();
+  }, []);
+
+  useEffect(() => {
     setIsLoading(true);
   }, [Characters]);
 
   const getfilterCharacters = (): Character[] => {
-    const filtered = getCharacters().filter((element) =>
+    const filtered = Characters.filter((element) =>
       element.name.toUpperCase().includes(InputValue.toUpperCase())
     );
     return filtered.slice(currentPage, currentPage + 5);
