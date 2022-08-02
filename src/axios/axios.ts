@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Character } from "../types/Character";
 
 const Axios = () => {
@@ -15,7 +15,6 @@ const Axios = () => {
     }
   };
 
-
   const request = () => {
     axios.request(options).then(function (response) {
       const data:Character[] = response.data.results;
@@ -26,11 +25,15 @@ const Axios = () => {
     return Characters;
   }
 
+  useEffect(() => {
+    getCharacters();
+  }, []);
+
   const getCharacters=()=>{
     return request();
   }
 
-  return { getCharacters,setCharacters,Characters };
+  return { setCharacters,Characters };
 
 }
 

@@ -7,25 +7,6 @@
   flex-direction: column;
   gap: 1rem;
 
-  h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    color: #1e88e5;
-
-    @media screen and (max-width: 768px) {
-      margin-top: 1rem;
-    }
-  }
-
-  .Input {
-    @media screen and (max-width: 768px) {
-      width: 45vw;
-    }
-  }
-
   .container-button {
     @media screen and (max-width: 768px) {
       display: flex;
